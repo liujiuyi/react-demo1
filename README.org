@@ -1,0 +1,6 @@
+* react demo
+侧重点是fetch remote数据列表，显示在页面上。
+* 3个状态
+- loading
+- success
+- failure

@@ -1,10 +1,13 @@
 import React from 'react'
 
+function createMarkup(movie) {
+    return {__html: movie.selftext};
+}
 const Movie = ({movie}) => (
     <div>
       {movie.title}
       <br/>
-      {movie.selftext_html}
+      <div dangerouslySetInnerHTML={createMarkup(movie)} />
     </div>
 )
 
