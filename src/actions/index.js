@@ -2,7 +2,6 @@ export const MOVIE_REQUEST = 'MOVIE_REQUEST';
 export const MOVIE_SUCCESS = 'MOVIE_SUCCESS';
 export const MOVIE_FAILURE = 'MOVIE_FAILURE';
 
-
 export const requestMovies = () => ({
   type: MOVIE_REQUEST,
 });
@@ -27,3 +26,10 @@ export const fetchMovies = () => dispatch => {
     .then(json => dispatch(receiveMovies(json)))
     .catch(e => dispatch(receiveMoviesFailure(e.message)));
 };
+
+
+export const SELECT_MOVIE = 'SELECT_MOVIE';
+export const selectMovie = movie => ({
+  type: SELECT_MOVIE,
+  movie,
+});

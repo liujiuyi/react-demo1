@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { fetchMovies } from '../actions';
+import { fetchMovies, selectMovie } from '../actions';
+import Movies from '../components/movies';
+import Movie from '../components/movie';
+
 class Main extends Component {
 
     componentDidMount() {
@@ -9,9 +12,16 @@ class Main extends Component {
         dispatch(fetchMovies())
     }
 
+    clickHandle = (movie) => {
+        const { dispatch } = this.props;
+        dispatch(selectMovie(movie))
+    };
+
     render() {
-        const { isFetching, movies, err } = this.props
-        const isEmpty = movies.length === 0
+        const { movies, select_movie } = this.props
+        const { isFetching, list, err } = movies;
+        const { movie } = select_movie;
+        const isEmpty = list.length === 0
         if (isFetching) {
             return (
                 <div>
@@ -32,19 +42,21 @@ class Main extends Component {
             );
         } else {
             return (
-                <ul>
-                  {movies.map((post, i) =>
-                      <li key={i}>{post.title}</li>
-                  )}
-                </ul>
+                <div>
+                  <Movies movies={list} clickHandle={this.clickHandle} />
+                  {movie && <Movie movie={movie} />}
+                </div>
             );
         }
     }
 }
 
 const mapStateToProps = state => {
-    const { moviesReducer } = state;
-    return moviesReducer;
+    const { movies, select_movie } = state;
+    return {
+        movies,
+        select_movie,
+    };
 };
 
 export default connect(mapStateToProps)(Main);

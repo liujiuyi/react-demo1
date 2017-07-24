@@ -1,12 +1,13 @@
 import { combineReducers } from 'redux';
 
 import {
-    MOVIE_REQUEST, MOVIE_SUCCESS, MOVIE_FAILURE
+    MOVIE_REQUEST, MOVIE_SUCCESS, MOVIE_FAILURE,
+    SELECT_MOVIE,
 } from '../actions';
 
-const moviesReducer = (state = {
+const movies = (state = {
     isFetching: false,
-    movies: [],
+    list: [],
     err: null,
 }, action) => {
     switch (action.type) {
@@ -19,7 +20,7 @@ const moviesReducer = (state = {
             return {
                 ...state,
                 isFetching: false,
-                movies: action.movies,
+                list: action.movies,
             }
         case MOVIE_FAILURE:
             return {
@@ -32,8 +33,23 @@ const moviesReducer = (state = {
     }
 };
 
+const select_movie = (state = {
+    movie: null,
+}, action) => {
+    switch (action.type) {
+        case SELECT_MOVIE:
+            return {
+                ...state,
+                movie: action.movie,
+            }
+        default:
+            return state;
+    }
+};
+
 const rootReducer = combineReducers({
-    moviesReducer,
+    movies,
+    select_movie,
 });
 
 export default rootReducer;
