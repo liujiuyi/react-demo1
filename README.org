@@ -4,3 +4,6 @@
 - loading
 - success
 - failure
+* Installation
+ - npm install
+ - npm start
