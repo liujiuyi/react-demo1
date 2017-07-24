@@ -7,12 +7,8 @@ import {
 
 
 import Main from './containers/main'
+import Detail from './components/detail'
 
-const About = () => (
-    <div>
-      <h2>About</h2>
-    </div>
-)
 
 const Topic = ({ match }) => (
   <div>
@@ -20,7 +16,7 @@ const Topic = ({ match }) => (
   </div>
 )
 
-const Topics = ({ match }) => (
+const Todo = ({ match }) => (
   <div>
     <h2>Topics</h2>
     <ul>
@@ -53,15 +49,14 @@ const App = () => (
     <div>
       <ul>
         <li><Link to="/">Main</Link></li>
-        <li><Link to="/about">About</Link></li>
         <li><Link to="/topics">Topics</Link></li>
       </ul>
 
       <hr/>
 
       <Route exact path="/" component={Main}/>
-      <Route path="/about" component={About}/>
-      <Route path="/topics" component={Topics}/>
+      <Route path="/detail/:id" component={Detail}/>
+      <Route path="/todo" component={Todo}/>
     </div>
   </Router>
 )

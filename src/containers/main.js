@@ -8,17 +8,11 @@ import Movie from '../components/movie';
 class Main extends Component {
 
     componentDidMount() {
-        const { dispatch } = this.props;
-        dispatch(fetchMovies())
+      this.props.fetchMovies();
     }
 
-    clickHandle = (movie) => {
-        const { dispatch } = this.props;
-        dispatch(selectMovie(movie))
-    };
-
     render() {
-        const { movies, select_movie } = this.props
+      const { movies, select_movie, clickHandle } = this.props
         const { isFetching, list, err } = movies;
         const { movie } = select_movie;
         const isEmpty = list.length === 0
@@ -43,7 +37,7 @@ class Main extends Component {
         } else {
             return (
                 <div>
-                  <Movies movies={list} clickHandle={this.clickHandle} />
+                  <Movies movies={list} clickHandle={clickHandle} />
                   {movie && <Movie movie={movie} />}
                 </div>
             );
@@ -58,5 +52,13 @@ const mapStateToProps = state => {
         select_movie,
     };
 };
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    clickHandle: (movie) => {
+      dispatch(selectMovie(movie))
+    },
+    fetchMovies: () => dispatch(fetchMovies()),
+  };
+};
 
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

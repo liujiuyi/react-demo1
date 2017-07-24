@@ -1,12 +1,16 @@
 import React from 'react'
 
+import {
+  Link
+} from 'react-router-dom'
+
 const Movies = ({movies, clickHandle}) => (
     <ol>
       {movies.map((movie, i) =>
           <li key={i} onClick={() => clickHandle(movie)}>
-            <a href="javascript:;">
-              {movie.title}
-            </a>
+                  <Link to={`/detail/${movie.name}`}>
+                  {movie.title}
+                  </Link>
           </li>
       )}
     </ol>
