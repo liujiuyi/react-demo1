@@ -1,13 +1,26 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-const Todos = ({todos}) => (
-    <ol>
-      {todos.map((todo, i) =>
-          <li key={i} >
-                  {todo.text}
-          </li>
-      )}
-    </ol>
-)
+import TodoItem from './todo-item';
+export default class Todos extends Component {
 
-export default Todos
+    render() {
+        const { todos, actions } = this.props;
+        return (
+            <div>
+              <ul>
+                {todos.map((todo, i) =>
+                    <li key={i} >
+                      <TodoItem todo={todo} editTodo={actions.editTodo} completeTodo={actions.completeTodo} deleteTodo={actions.deleteTodo} />
+                    </li>
+                )}
+              </ul>
+              <button onClick={() => actions.completeAll()} >
+                Complete All
+              </button>
+              <button onClick={() => actions.clearComplete()} >
+                Clear Completed
+              </button>
+            </div>
+        );
+    }
+};

@@ -11,7 +11,7 @@ const todos = (state = [{
         case ADD_TODO:
             return [
                 {
-                    text: 'Use React',
+                    text: action.text,
                     completed: false,
                     id: state.reduce((maxid, todo) =>
                         Math.max(maxid, todo.id), 0
