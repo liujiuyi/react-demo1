@@ -1,29 +1,23 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
+import * as todoActions from '../actions/todo';
+import TodoHeader from '../components/todo-header';
 import TodoList from '../components/todo-list';
 
-class Todos extends Component {
+const Todos = ({todos, actions}) => (
+    <div>
+      <TodoHeader add={actions.addTodo} />
+      <TodoList todos={todos} actions={actions} />
+    </div>
+);
 
-    render() {
-      const { todos } = this.props
-            return (
-                <div>
-                  <TodoList todos={todos}   />
-                </div>
-            );
-    }
-}
-
-const mapStateToProps = state => {
-    const { todos } = state;
-    return {
-      todos,
-    };
-};
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-  };
-};
+const mapStateToProps = state => ({
+    todos: state.todos
+});
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    actions: bindActionCreators(todoActions, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todos);

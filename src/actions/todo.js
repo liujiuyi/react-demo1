@@ -3,25 +3,25 @@ import {
 } from '../constants/todo';
 
 export const addTodo = (text) =>({
-  type: ADD_TODO,
-  text,
+    type: ADD_TODO,
+    text,
 });
 export const deleteTodo = (id) =>({
-  type: DELETE_TODO,
-  id,
+    type: DELETE_TODO,
+    id,
 });
 export const editTodo = (id, text) =>({
-  type: DELETE_TODO,
-  id,
-  text,
+    type: EDIT_TODO,
+    id,
+    text,
 });
 export const completeTodo = (id) =>({
-  type: COMPLETE_TODO,
-  id,
+    type: COMPLETE_TODO,
+    id,
 });
 export const completeAll = () =>({
-  type: COMPLETE_ALL,
+    type: COMPLETE_ALL,
 });
 export const clearComplete = () =>({
-  type: CLEAR_COMPLETED,
+    type: CLEAR_COMPLETED,
 });

@@ -10,14 +10,6 @@ import Main from './containers/main'
 import Todos from './containers/todos'
 import Detail from './components/detail'
 
-
-const Topic = ({ match }) => (
-  <div>
-    <h3>{match.params.topicId}</h3>
-  </div>
-)
-
-
 const App = () => (
   <Router>
     <div>
