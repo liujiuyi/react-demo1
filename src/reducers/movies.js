@@ -23,7 +23,7 @@ const movies = (state = {
     return {
       ...state,
       isFetching: false,
-      err: action.err
+      error: action.error
     }
   default:
     return state;

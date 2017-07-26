@@ -8,40 +8,23 @@ import Movie from '../components/movie';
 class Main extends Component {
 
     componentDidMount() {
-      this.props.fetchMovies();
+        this.props.fetchMovies();
     }
 
     render() {
-      const { movies, select_movie, clickHandle } = this.props
-        const { isFetching, list, err } = movies;
+        const { movies, select_movie, clickHandle } = this.props
+        const { isFetching, list, error } = movies;
         const { movie } = select_movie;
         const isEmpty = list.length === 0
-        if (isFetching) {
-            return (
-                <div>
-                  loading...
-                </div>
-            );
-        } else if (err) {
-            return (
-                <div>
-                  error: {err}
-                </div>
-            );
-        } else if (isEmpty) {
-            return (
-                <div>
-                  no data
-                </div>
-            );
-        } else {
-            return (
-                <div>
-                  <Movies movies={list} clickHandle={clickHandle} />
-                  {movie && <Movie movie={movie} />}
-                </div>
-            );
-        }
+        return (
+            <div>
+              { isFetching ? 'loading...' : '' }
+              { error ? error : '' }
+              { isEmpty ? 'no data' : '' }
+              <Movies movies={list} clickHandle={clickHandle} />
+              {movie && <Movie movie={movie} />}
+            </div>
+        );
     }
 }
 
@@ -53,12 +36,12 @@ const mapStateToProps = state => {
     };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    clickHandle: (movie) => {
-      dispatch(selectMovie(movie))
-    },
-    fetchMovies: () => dispatch(fetchMovies()),
-  };
+    return {
+        clickHandle: (movie) => {
+            dispatch(selectMovie(movie))
+        },
+        fetchMovies: () => dispatch(fetchMovies()),
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

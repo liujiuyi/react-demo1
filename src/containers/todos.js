@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
@@ -6,12 +6,21 @@ import * as todoActions from '../actions/todo';
 import TodoHeader from '../components/todo-header';
 import TodoList from '../components/todo-list';
 
-const Todos = ({todos, actions}) => (
-    <div>
-      <TodoHeader add={actions.addTodo} />
-      <TodoList todos={todos} actions={actions} />
-    </div>
-);
+class Todos extends Component {
+    componentDidMount() {
+        this.props.actions.fetchTodos();
+    }
+
+    render() {
+        const { todos, actions } = this.props
+        return (
+            <div>
+              <TodoHeader add={actions.addTodo} />
+              <TodoList todos={todos.list} actions={actions} />
+            </div>
+        );
+    }
+}
 
 const mapStateToProps = state => ({
     todos: state.todos

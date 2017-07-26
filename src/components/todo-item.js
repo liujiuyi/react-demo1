@@ -23,6 +23,7 @@ export default class TodoItem extends Component {
             element = (
                 <input
                     type="text"
+                    autoFocus="true"
                     defaultValue={todo.text}
                     onKeyDown={this.handleSubmit}
                 />
