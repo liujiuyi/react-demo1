@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
+import { Button } from 'react-weui';
 
 export class TodoHeader extends Component {
 
@@ -27,7 +28,10 @@ export class TodoHeader extends Component {
                      value={this.state.text}
                      onChange={this.handleChange}
               />
-              <button onClick={this.handleSubmit} >Add</button>
+              <Button type="warn"
+                      onClick={this.handleSubmit} >
+                +
+              </Button>
             </div>
         );
     }

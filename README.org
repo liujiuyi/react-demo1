@@ -1,10 +1,7 @@
-* react demo
+* 使用react，redux的一个demo
 ** fetch remote数据列表，显示在页面上。
 ** dispatch处理
-* 3个状态
-- loading
-- success
-- failure
 * Installation
+ - git clone
  - npm install
  - npm start
