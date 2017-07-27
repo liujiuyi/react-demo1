@@ -17,7 +17,7 @@ export default class Todos extends Component {
               <button onClick={() => actions.completeAll()} >
                 Complete All
               </button>
-              <button onClick={() => actions.clearComplete()} >
+              <button onClick={() => actions.clearCompleted()} >
                 Clear Completed
               </button>
             </div>

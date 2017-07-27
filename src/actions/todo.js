@@ -44,21 +44,78 @@ export const deleteTodo = (id)  => dispatch => {
       error: e.message,
     }));
 };
-export const editTodo = (id, text)  => dispatch => dispatch({
-  type: ACTION.EDIT_TODO,
-  id,
-  text,
+export const editTodo = (todo) => (dispatch, getState) => {
+  dispatch({
+    type: ACTION.EDIT_TODO_REQUEST,
+  });
+
+  const headers = new Headers({
+    "Content-Type": "application/json",
+  });
+  return fetch('http://localhost:3001/todos', {
+    method: 'PUT',
+    headers,
+    body: JSON.stringify(todo)
+  })
+    .then(response => response.json())
+    .then(json => dispatch({
+      type: ACTION.EDIT_TODO_SUCCESS,
+      todos: json,
+    }))
+    .catch(e => dispatch({
+      type: ACTION.EDIT_TODO_FAILURE,
+      error: e.message,
+    }));
+};
+export const completeTodo = (todo)  => this.editTodo({
+  ...todo,
+  completed: !todo.completed
 });
-export const completeTodo = (id)  => dispatch => dispatch({
-  type: ACTION.COMPLETE_TODO,
-  id,
-});
-export const completeAll = ()  => dispatch => dispatch({
-  type: ACTION.COMPLETE_ALL,
-});
-export const clearComplete = ()  => dispatch => dispatch({
-  type: ACTION.CLEAR_COMPLETED,
-});
+
+export const completeAll = ()  => dispatch => {
+  dispatch({
+    type: ACTION.COMPLETE_ALL_REQUEST,
+  });
+
+  const headers = new Headers({
+    "Content-Type": "application/json",
+  });
+  return fetch('http://localhost:3001/todos/complete-all', {
+    method: 'POST',
+    headers,
+  })
+    .then(response => response.json())
+    .then(json => dispatch({
+      type: ACTION.COMPLETE_ALL_SUCCESS,
+      todos: json,
+    }))
+    .catch(e => dispatch({
+      type: ACTION.COMPLETE_ALL_FAILURE,
+      error: e.message,
+    }));
+};
+export const clearCompleted = ()  => dispatch => {
+  dispatch({
+    type: ACTION.CLEAR_COMPLETED_REQUEST,
+  });
+
+  const headers = new Headers({
+    "Content-Type": "application/json",
+  });
+  return fetch('http://localhost:3001/todos/clear-completed', {
+    method: 'POST',
+    headers,
+  })
+    .then(response => response.json())
+    .then(json => dispatch({
+      type: ACTION.CLEAR_COMPLETED_SUCCESS,
+      todos: json,
+    }))
+    .catch(e => dispatch({
+      type: ACTION.CLEAR_COMPLETED_FAILURE,
+      error: e.message,
+    }));
+};
 
 
 export const fetchTodos = () => dispatch => {

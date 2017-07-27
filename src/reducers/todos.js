@@ -13,14 +13,20 @@ const todos = (state = initialState, action) => {
     switch (action.type) {
         case ACTION.TODO_REQUEST:
         case ACTION.ADD_TODO_REQUEST:
+        case ACTION.EDIT_TODO_REQUEST:
         case ACTION.DELETE_TODO_REQUEST:
+        case ACTION.COMPLETE_ALL_REQUEST:
+        case ACTION.CLEAR_COMPLETED_REQUEST:
             return {
                 ...state,
                 isFetching: true,
             };
         case ACTION.TODO_SUCCESS:
         case ACTION.ADD_TODO_SUCCESS:
+        case ACTION.EDIT_TODO_SUCCESS:
         case ACTION.DELETE_TODO_SUCCESS:
+        case ACTION.COMPLETE_ALL_SUCCESS:
+        case ACTION.CLEAR_COMPLETED_SUCCESS:
             return {
                 ...state,
                 isFetching: false,
@@ -28,33 +34,15 @@ const todos = (state = initialState, action) => {
             };
         case ACTION.TODO_FAILURE:
         case ACTION.ADD_TODO_FAILURE:
+        case ACTION.EDIT_TODO_FAILURE:
         case ACTION.DELETE_TODO_FAILURE:
+        case ACTION.COMPLETE_ALL_FAILURE:
+        case ACTION.CLEAR_COMPLETED_FAILURE:
             return {
                 ...state,
                 isFetching: false,
                 error: action.error
             };
-
-        case ACTION.EDIT_TODO:
-            return state.map(todo =>
-                todo.id === action.id ? { ...todo, text: action.text } : todo
-            );
-
-        case ACTION.COMPLETE_TODO:
-            return state.map(todo =>
-                todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
-            );
-
-        case ACTION.COMPLETE_ALL:
-            const allMarked = state.every(todo => todo.completed);
-            return state.map(todo =>
-                ({ ...todo, completed: !allMarked })
-            );
-
-        case ACTION.CLEAR_COMPLETED:
-            return state.filter(todo =>
-                todo.completed === false
-            );
 
         default:
             return state;

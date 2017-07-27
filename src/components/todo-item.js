@@ -10,7 +10,7 @@ export default class TodoItem extends Component {
     handleSubmit = e => {
         const text = e.target.value.trim()
         if (e.which === 13) {
-            this.props.editTodo(this.props.todo.id, text)
+            this.props.editTodo({ ...this.props.todo, text})
             this.setState({ editing: false });
         }
     };
@@ -40,7 +40,7 @@ export default class TodoItem extends Component {
               <input
                   type="checkbox"
                   checked={todo.completed}
-                  onChange={() => completeTodo(todo.id)} />
+                  onChange={() => completeTodo(todo)} />
               {element}
               <button onClick={() => deleteTodo(todo.id)} >
                 -
