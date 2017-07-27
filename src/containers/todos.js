@@ -3,8 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import * as todoActions from '../actions/todo';
-import TodoHeader from '../components/todo-header';
-import TodoList from '../components/todo-list';
+import { TodoHeader, Todos as TodoList } from '../components/todos';
 
 class Todos extends Component {
     componentDidMount() {

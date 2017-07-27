@@ -20,7 +20,7 @@ class Main extends Component {
             <div>
               { isFetching ? 'loading...' : '' }
               { error ? error : '' }
-              { isEmpty ? 'no data' : '' }
+              { !isFetching && isEmpty ? 'no data' : '' }
               <Movies movies={list} clickHandle={clickHandle} />
               {movie && <Movie movie={movie} />}
             </div>
