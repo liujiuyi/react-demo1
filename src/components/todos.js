@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
-import { Button } from 'react-weui';
+import {
+    Cells,
+    Cell,
+    FormCell,
+    CellHeader,
+    CellBody,
+    Label,
+    Input,
+    Button,
+} from 'react-weui';
 
 export class TodoHeader extends Component {
 
@@ -9,10 +18,11 @@ export class TodoHeader extends Component {
     }
 
     handleSubmit = e => {
-        const node = ReactDOM.findDOMNode(this.refs.input);
-        const text = node.value.trim();
-        this.props.add(text)
-        this.setState({ text: '' })
+        const text = e.target.value.trim()
+        if (e.which === 13) {
+            this.props.add(text)
+            this.setState({ text: '' })
+        }
     }
 
     handleChange = e => {
@@ -22,16 +32,21 @@ export class TodoHeader extends Component {
     render() {
         return (
             <div>
-              <input type="text"
-                     ref='input'
-                     autoFocus="true"
-                     value={this.state.text}
-                     onChange={this.handleChange}
-              />
-              <Button type="warn"
-                      onClick={this.handleSubmit} >
-                +
-              </Button>
+              <FormCell>
+                <CellHeader>
+                  <Label>Add</Label>
+                </CellHeader>
+                <CellBody>
+                  <Input
+                      type="text"
+                      placeholder="todo..."
+                      autoFocus="true"
+                      value={this.state.text}
+                      onChange={this.handleChange}
+                      onKeyDown={this.handleSubmit}
+                  />
+                </CellBody>
+              </FormCell>
             </div>
         );
     }
@@ -79,9 +94,12 @@ class TodoItem extends Component {
                   checked={todo.completed}
                   onChange={() => completeTodo(todo)} />
               {element}
-              <button onClick={() => deleteTodo(todo.id)} >
+              <Button type="default"
+                      size="small"
+                      onClick={() => deleteTodo(todo.id)}
+              >
                 -
-              </button>
+              </Button>
             </div>
         );
     }
@@ -100,12 +118,12 @@ export class Todos extends Component {
                     </li>
                 )}
               </ul>
-              <button onClick={() => actions.completeAll()} >
+              <Button onClick={() => actions.completeAll()} >
                 Complete All
-              </button>
-              <button onClick={() => actions.clearCompleted()} >
+              </Button>
+              <Button onClick={() => actions.clearCompleted()} >
                 Clear Completed
-              </button>
+              </Button>
             </div>
         );
     }

@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { fetchMovies, selectMovie } from '../actions/movie';
+import { fetchMoviesIfNeed, selectMovie } from '../actions/movie';
 import Movies from '../components/movies';
 import Movie from '../components/movie';
 
 class Main extends Component {
 
     componentDidMount() {
-        this.props.fetchMovies();
+        this.props.fetchMoviesIfNeed();
     }
 
     render() {
@@ -40,7 +40,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         clickHandle: (movie) => {
             dispatch(selectMovie(movie))
         },
-        fetchMovies: () => dispatch(fetchMovies()),
+        fetchMoviesIfNeed: () => dispatch(fetchMoviesIfNeed()),
     };
 };
 

@@ -2,7 +2,7 @@ import {
   MOVIE_REQUEST, MOVIE_SUCCESS, MOVIE_FAILURE, SELECT_MOVIE
 } from '../constants/movie';
 
-export const fetchMovies = () => dispatch => {
+const fetchMovies = () => dispatch => {
   dispatch({
     type: MOVIE_REQUEST,
   });
@@ -16,6 +16,11 @@ export const fetchMovies = () => dispatch => {
       type: MOVIE_FAILURE,
       error: e.message,
     }));
+};
+export const fetchMoviesIfNeed = () => (dispatch, getState) => {
+  if (getState().movies.list.length === 0) {
+    dispatch(fetchMovies());
+  }
 };
 
 export const selectMovie = movie => ({

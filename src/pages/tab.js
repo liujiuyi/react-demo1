@@ -21,10 +21,7 @@ export default class TabBarAutoDemo extends React.Component {
               <TabBarItem icon={<img src={IconMsg}/>} label="Tab2">
                 <Article>
                   <section>
-                    <h2 className="title">Heading</h2>
-                    <section>
-                      <Todos />
-                    </section>
+                    <Todos />
                   </section>
                 </Article>
               </TabBarItem>

@@ -1,6 +1,8 @@
 * 使用react，redux的一个demo
 ** fetch remote数据列表，显示在页面上。
 ** dispatch处理
+** todos 的各种操作，
+** react-weui 构造UI
 * Installation
  - git clone
  - npm install
