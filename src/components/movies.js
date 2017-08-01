@@ -8,7 +8,7 @@ const Movies = ({movies, clickHandle}) => (
     <ol>
       {movies.map((movie, i) =>
           <li key={i} onClick={() => clickHandle(movie)}>
-                  <Link to={`/detail/${movie.name}`}>
+                  <Link to={`/detail/${movie._id}`}>
                   {movie.title}
                   </Link>
           </li>

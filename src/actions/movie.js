@@ -2,7 +2,7 @@ import {
   MOVIE_REQUEST, MOVIE_SUCCESS, MOVIE_FAILURE, SELECT_MOVIE
 } from '../constants/movie';
 
-const fetchMovies = (page) => dispatch => {
+const fetchMovies = (movement='up', page=1) => dispatch => {
   dispatch({
     type: MOVIE_REQUEST,
   });
@@ -11,17 +11,15 @@ const fetchMovies = (page) => dispatch => {
     .then(json => dispatch({
       type: MOVIE_SUCCESS,
       movies: json,
+      downOrUp: movement,
     }))
     .catch(e => dispatch({
       type: MOVIE_FAILURE,
       error: e.message,
     }));
 };
-export const fetchMoviesIfNeed = (page) => (dispatch, getState) => {
-  //alert("page:" + page);
-  //if (getState().movies.list.length === 0) {
-    dispatch(fetchMovies(page));
-  //}
+export const fetchMoviesIfNeed = (movement, page) => (dispatch, getState) => {
+    dispatch(fetchMovies(movement, page));
 };
 
 export const selectMovie = movie => ({
