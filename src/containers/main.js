@@ -19,7 +19,9 @@ class Main extends Component {
 
     componentDidMount() {
       //初始数据
-      this.loadData();
+      if(this.props.movies.list.length === 0){
+        this.loadData();
+      }
     }
     
     componentDidUpdate(){
