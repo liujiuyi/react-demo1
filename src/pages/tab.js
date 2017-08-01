@@ -11,21 +11,21 @@ export default class TabBarAutoDemo extends React.Component {
     render() {
         return (
             <Tab type="tabbar">
-              <TabBarItem icon={<img src={IconButton}/>} label="Tab1">
+              <TabBarItem icon={<img src={IconButton} alt="tab1"/>} label="Tab1">
                 <Article>
                   <section>
                     <Main />
                   </section>
                 </Article>
               </TabBarItem>
-              <TabBarItem icon={<img src={IconMsg}/>} label="Tab2">
+              <TabBarItem icon={<img src={IconMsg} alt="tab2"/>} label="Tab2">
                 <Article>
                   <section>
                     <Todos />
                   </section>
                 </Article>
               </TabBarItem>
-              <TabBarItem icon={<img src={IconArticle}/>} label="Tab3">
+              <TabBarItem icon={<img src={IconArticle} alt="tab3"/>} label="Tab3">
                 <Article>
                   <h1>Page 3</h1>
                   <section>
