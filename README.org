@@ -7,3 +7,6 @@
  - git clone
  - npm install
  - npm start
+* TO DO
+** pagination／load more
+** 微信扫码，反馈 https://github.com/yanxi-me/weixin-js-sdk
